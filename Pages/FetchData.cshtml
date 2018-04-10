@@ -7,7 +7,7 @@
 
 @if (forecasts == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>LoadingSSS...</em></p>
 }
 else
 {
@@ -24,10 +24,10 @@ else
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@forecast.id</td>
+                    <td>@forecast.banner</td>
+                    <td>@forecast.describs</td>
+                    <td>@forecast.isdelete</td>
                 </tr>
             }
         </tbody>
@@ -39,14 +39,14 @@ else
 
     protected override async Task OnInitAsync()
     {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("/sample-data/weather.json");
+        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("http://localhost:8080/api/banners");
     }
 
     class WeatherForecast
     {
-        public DateTime Date { get; set; }
-        public int TemperatureC { get; set; }
-        public int TemperatureF { get; set; }
-        public string Summary { get; set; }
+        public int id { get; set; }
+        public string banner { get; set; }
+        public string describs { get; set; }
+        public int isdelete { get; set; }
     }
 }
